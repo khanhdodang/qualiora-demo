@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Checkout Demo — Sign in</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="card">
+      <h1>Sign in</h1>
+      <form id="login-form">
+        <label>
+          Email
+          <input name="email" type="email" data-testid="email" required />
+        </label>
+        <label>
+          Password
+          <input name="password" type="password" data-testid="password" required />
+        </label>
+        <button type="submit" data-testid="login-submit">Sign in</button>
+      </form>
+      <p id="welcome" class="success" hidden data-testid="welcome">Welcome back</p>
+      <p><a href="/guest-checkout.html">Continue as guest</a></p>
+    </main>
+    <script>
+      document.getElementById('login-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        document.getElementById('welcome').hidden = false;
+      });
+    </script>
+  </body>
+</html>
