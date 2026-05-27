@@ -1,0 +1,22 @@
+{
+  "name": "qualiora-demo",
+  "version": "1.0.0",
+  "description": "Playwright E2E demo for Qualiora Checkout Platform — maps to DEMO-TC-xxxx test cases",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "serve:fixtures": "node scripts/serve-fixtures.mjs",
+    "import:qualiora": "node scripts/qualiora-import.mjs test-results/results.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khanhdodang/qualiora-demo.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^25.9.1"
+  }
+}

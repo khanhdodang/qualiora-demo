@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Checkout Demo — Promo code</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="card">
+      <h1>Promo code</h1>
+      <label>
+        Code
+        <input type="text" data-testid="promo-code" placeholder="SAVE10" />
+      </label>
+      <button type="button" data-testid="apply-promo">Apply</button>
+      <p id="promo-success" class="success" hidden data-testid="promo-success">
+        Promo applied — 10% off
+      </p>
+      <p id="promo-error" class="error" hidden data-testid="promo-error">Promo code expired</p>
+      <p><a href="/payment.html">Continue to payment</a></p>
+    </main>
+    <script>
+      document.querySelector('[data-testid="apply-promo"]').addEventListener('click', () => {
+        const code = document.querySelector('[data-testid="promo-code"]').value.trim().toUpperCase();
+        document.getElementById('promo-success').hidden = true;
+        document.getElementById('promo-error').hidden = true;
+        if (code === 'SAVE10') {
+          document.getElementById('promo-success').hidden = false;
+        } else if (code === 'EXPIRED') {
+          document.getElementById('promo-error').hidden = false;
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Checkout Demo — Payment</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="card">
+      <h1>Card payment</h1>
+      <label>
+        Card number
+        <input type="text" data-testid="card-number" value="4111111111111111" />
+      </label>
+      <label>
+        CVV
+        <input type="text" data-testid="card-cvv" value="123" maxlength="4" />
+      </label>
+      <button type="button" data-testid="pay-submit">Pay now</button>
+      <p id="payment-ok" class="success" hidden data-testid="payment-ok">Payment authorized</p>
+      <p><a href="/summary.html">View order summary</a></p>
+    </main>
+    <script>
+      document.querySelector('[data-testid="pay-submit"]').addEventListener('click', () => {
+        document.getElementById('payment-ok').hidden = false;
+      });
+    </script>
+  </body>
+</html>

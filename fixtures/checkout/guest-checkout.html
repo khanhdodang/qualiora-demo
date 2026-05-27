@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Checkout Demo — Guest checkout</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="card">
+      <h1>Guest checkout</h1>
+      <p data-testid="cart-count">1 item in cart</p>
+      <label>
+        Email for receipt
+        <input type="email" data-testid="guest-email" value="guest@example.com" />
+      </label>
+      <button type="button" data-testid="guest-continue">Continue as guest</button>
+      <p id="guest-confirmed" class="success" hidden data-testid="guest-confirmed">
+        Guest session started
+      </p>
+      <p><a href="/promo.html">Apply promo code</a></p>
+    </main>
+    <script>
+      document.querySelector('[data-testid="guest-continue"]').addEventListener('click', () => {
+        document.getElementById('guest-confirmed').hidden = false;
+      });
+    </script>
+  </body>
+</html>

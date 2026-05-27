@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Checkout Demo — Order summary</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="card">
+      <h1>Order summary</h1>
+      <table data-testid="order-summary">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Qty</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Wireless earbuds</td>
+            <td>1</td>
+            <td data-testid="order-total">$79.00</td>
+          </tr>
+        </tbody>
+      </table>
+      <p data-testid="shipping-estimate">Estimated delivery: May 28</p>
+    </main>
+  </body>
+</html>
