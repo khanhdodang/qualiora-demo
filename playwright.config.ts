@@ -9,13 +9,11 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: process.env.CI
-    ? [
-        ['json', { outputFile: 'test-results/results.json' }],
-        ['html', { open: 'never' }],
-        ['list'],
-      ]
-    : [['html'], ['list']],
+  reporter: [
+    ['json', { outputFile: 'test-results/results.json' }],
+    ['html', { open: process.env.CI ? 'never' : 'on-failure' }],
+    ['list'],
+  ],
   use: {
     baseURL,
     trace: 'on-first-retry',

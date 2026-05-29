@@ -7,8 +7,10 @@
   "scripts": {
     "test": "playwright test",
     "test:headed": "playwright test --headed",
+    "test:ci": "CI=1 playwright test",
     "serve:fixtures": "node scripts/serve-fixtures.mjs",
-    "import:qualiora": "node scripts/qualiora-import.mjs test-results/results.json"
+    "import:qualiora": "node scripts/qualiora-import.mjs test-results/results.json",
+    "test:import": "playwright test && node scripts/qualiora-import.mjs test-results/results.json"
   },
   "repository": {
     "type": "git",
