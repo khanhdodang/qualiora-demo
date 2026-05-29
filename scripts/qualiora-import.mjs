@@ -66,7 +66,7 @@ function flattenPlaywrightReport(report) {
 }
 
 function normalizeSpecPath(file) {
-  return file.replace(/\\/g, '/').replace(/^\.\//, '');
+  return file.replaceAll('\\', '/').replace(/^\.\//, '');
 }
 
 function applySidecarMap(rows, sidecar) {
@@ -150,7 +150,8 @@ async function main() {
 
   if (!existsSync(resultsPath)) {
     console.warn(`[qualiora-import] no report at ${resultsPath}`);
-    process.exit(0);
+    console.warn('[qualiora-import] run `npm test` first (writes test-results/results.json), then import again.');
+    process.exit(1);
   }
 
   const apiBase = (process.env.QUALIORA_API_URL ?? 'http://localhost:3000').replace(/\/$/, '');
@@ -223,6 +224,10 @@ async function main() {
         buildNumber: String(process.env.GITHUB_RUN_NUMBER ?? Date.now()),
         ciPipeline: process.env.GITHUB_WORKFLOW ?? 'qualiora-demo/playwright',
         source: 'playwright',
+        ...(report.stats?.startTime ? { startedAt: report.stats.startTime } : {}),
+        ...(report.stats?.duration == null
+          ? {}
+          : { durationMs: Math.max(0, Math.round(report.stats.duration)) }),
       },
       results,
     },
@@ -239,7 +244,9 @@ async function main() {
   process.exit(1);
 }
 
-main().catch((err) => {
-  console.error('[qualiora-import]', err.message ?? err);
+try {
+  await main();
+} catch (err) {
+  console.error('[qualiora-import]', err.message ?? err.toString());
   process.exit(1);
-});
+}

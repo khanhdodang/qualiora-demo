@@ -35,15 +35,24 @@ UUID fallbacks live in `qualiora-map.json` (aligned with Qualiora demo seed).
 
 ## Import results from CI
 
-After `npx playwright test`, push JSON results to a running Qualiora instance:
+Run tests first — every `npm test` writes `test-results/results.json`. Then push results to Qualiora:
 
 ```bash
+npm test
+
 export QUALIORA_API_URL=http://localhost:3000
 export QUALIORA_CI_EMAIL=demo@qualiora.ai
-export QUALIORA_CI_PASSWORD='your-demo-password'
+export QUALIORA_CI_PASSWORD='demo!123'
 export QUALIORA_PROJECT_KEY=DEMO
 export QUALIORA_ENVIRONMENT_ID=44444444-0000-4000-8000-000000000005
 npm run import:qualiora
+```
+
+Or combine both steps:
+
+```bash
+# same env vars as above
+npm run test:import
 ```
 
 ### GitHub Actions secrets
